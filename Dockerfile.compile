@@ -1,0 +1,17 @@
+FROM golang:latest AS builder
+
+ARG HUGO_VERSION
+
+RUN go get github.com/magefile/mage
+RUN go get -d github.com/gohugoio/hugo
+WORKDIR /go/src/github.com/gohugoio/hugo
+RUN git checkout v${HUGO_VERSION}
+ENV CGO_ENABLED=0
+RUN mage vendor
+RUN mage install
+
+FROM scratch
+
+COPY --from=builder /go/bin/hugo /hugo
+
+ENTRYPOINT ["/hugo"]
