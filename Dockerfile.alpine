@@ -1,0 +1,8 @@
+ARG HUGO_VERSION=0.36.1
+
+FROM mtinside/hugo:${HUGO_VERSION} AS hugo
+
+FROM alpine:latest
+COPY --from=hugo /hugo /usr/bin/hugo
+
+ENTRYPOINT ["/usr/bin/hugo"]
