@@ -7,6 +7,13 @@ build-download:
 	    --tag mtinside/hugo:${HUGO_VERSION} \
 	    .
 
+build-onbuild: build-compile
+	docker build \
+	    --file Dockerfile.onbuild \
+	    --build-arg HUGO_VERSION=${HUGO_VERSION} \
+	    --tag mtinside/hugo:${HUGO_VERSION}-onbuild \
+	    .
+
 build-compile:
 	docker build \
 	    --file Dockerfile.compile \
