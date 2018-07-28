@@ -1,4 +1,4 @@
-HUGO_VERSION := 0.36.1
+HUGO_VERSION := 0.45.1
 
 build-download:
 	docker build \
