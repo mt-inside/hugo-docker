@@ -27,3 +27,10 @@ build-alpine:
 	    --build-arg HUGO_VERSION=${HUGO_VERSION} \
 	    --tag mtinside/hugo:${HUGO_VERSION}-alpine \
 	    .
+
+build-circleci:
+	docker build \
+	    --file Dockerfile.circleci \
+	    --build-arg HUGO_VERSION=${HUGO_VERSION} \
+	    --tag mtinside/hugo:${HUGO_VERSION}-circleci \
+	    .
