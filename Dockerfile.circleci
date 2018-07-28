@@ -8,7 +8,6 @@ RUN tar xzf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz hugo
 FROM alpine:latest
 
 RUN apk --update add git openssh ca-certificates && \
-    rm -rf /var/lib/apt/lists/* && \
     rm /var/cache/apk/*
 
 COPY --from=downloader /hugo /usr/bin/hugo
