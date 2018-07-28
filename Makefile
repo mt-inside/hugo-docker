@@ -14,14 +14,14 @@ build-compile:
 	    --tag mtinside/hugo:${HUGO_VERSION} \
 	    .
 
-build-onbuild: build-compile
+build-onbuild:
 	docker build \
 	    --file Dockerfile.onbuild \
 	    --build-arg HUGO_VERSION=${HUGO_VERSION} \
 	    --tag mtinside/hugo:${HUGO_VERSION}-onbuild \
 	    .
 
-build-alpine: build-compile
+build-alpine:
 	docker build \
 	    --file Dockerfile.alpine \
 	    --build-arg HUGO_VERSION=${HUGO_VERSION} \

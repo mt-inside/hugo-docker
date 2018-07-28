@@ -1,8 +1,11 @@
+FROM busybox:latest AS downloader
+
 ARG HUGO_VERSION=0.45.1
 
-FROM mtinside/hugo:${HUGO_VERSION} AS hugo
+RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+RUN tar xzf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz hugo
 
 FROM alpine:latest
-COPY --from=hugo /hugo /usr/bin/hugo
+COPY --from=downloader /hugo /usr/bin/hugo
 
 ENTRYPOINT ["/usr/bin/hugo"]
